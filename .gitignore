@@ -1,0 +1,26 @@
+# Build outputs
+Debug/
+Release/
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.log
+
+# IDE specific
+.settings/
+.metadata/
+*.launch
+*.jlink
+
+# Project metadata
+*.mxproject
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# TouchGFX generated files (if applicable)
+TouchGFX/generated
+TouchGFX/build   
