@@ -1,2 +1,2 @@
 # proj2Embed
-asm lights on and off on stm32f401
+asm display numbers on a led display via a stm32f401
