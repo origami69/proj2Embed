@@ -50,10 +50,11 @@ run_led: 	LDR r2, [r1, #0x10] 	@Load current state
 			AND r2, r2, #0x38 @mask everything except bits 0b00111000
 			LSL r2, r2, #4 @this will allow me to shift to 7,8,9 which are the pins in port A
 			STR r2, [r0, #0x14]			@store what the shifted values from r2 and put in ODR A
-			MOVW r2, #0xA42A	@this is a timer based on debounce of button about 20 miliseconds times 85,000 or the 84 mhz added a bit more for error and divided by 3(cycles per loop)
-			MOVT r2, #0x0008
-			BL delayer
-			B run_led
-delayer:	SUBS r2, r2, #1
-			BPL delayer
-			BX lr
+
+delayer:
+    MOVW r2, #0xA42A
+    MOVT r2, #0x0008
+delay_loop:
+    SUBS r2, r2, #1
+    BNE delay_loop
+    B run_led
