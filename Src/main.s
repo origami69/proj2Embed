@@ -10,17 +10,17 @@ array: .4byte 1848, 1280, 872, 1864, 1360, 1624, 1656, 1792, 1912, 1880
 .text
 main:
 
-	@ 1. Enable PWR Clock (APB1)
+	@Enable PWR Clock at APB1
 	LDR r0, =0x40023800
 	LDR	r1, [r0, #0x40]
     ORR r1, r1, #(1 << 28)
     STR r1, [r0, #0x40]
-    @ 2. Enable Backup Domain Access
+    @Enable Backup Domain Access
     LDR r0, =0x40007000
     LDR r1, [r0, #0x00]
     ORR r1, #(1 << 8)
     STR r1, [r0, #0x00]
-	@ 3. Enable LSE in RCC_BDCR
+	@Enable LSE in RCC_BDCR
     LDR r0, =0x40023800
     LDR r1, [r0, #0x70]
     @ Set LSE drive strength to the highest setting
@@ -29,7 +29,7 @@ main:
     @ Enable LSE (bit 0)
     ORR r1, r1, #1
     STR r1, [r0, #0x70]
-    @ 4. Wait for LSE ready (bit 1)
+    @ Wait for LSE ready (bit 1)
 	lse_waiter:
     	LDR r1, [r0, #0x70]
     	TST r1, #(1 << 1)
