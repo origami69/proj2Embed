@@ -18,7 +18,7 @@ main:
     @enable backup domain access
     LDR r0, =0x40007000
     LDR r1, [r0, #0x00]
-    ORR r1, #(1 << 8)
+    ORR r1, r1, #(1 << 8)
     STR r1, [r0, #0x00]
 	@enable lse in RCC_BDCR
     LDR r0, =0x40023800
